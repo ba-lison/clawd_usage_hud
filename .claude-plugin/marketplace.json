@@ -1,0 +1,6 @@
+{
+  "name": "clawd-usage-hud",
+  "description": "Clawd-Usage-HUD: o Rei Clawd, o uso da sessão e a equipe dele numa faixa acima do prompt.",
+  "owner": { "name": "Balison" },
+  "plugins": [{ "name": "clawd-usage-hud", "source": "./" }]
+}

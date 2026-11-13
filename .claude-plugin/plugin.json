@@ -1,0 +1,8 @@
+{
+  "name": "clawd-usage-hud",
+  "version": "0.1.1",
+  "description": "Rei Clawd e o uso da sessão acima do prompt: janela de 5h, semana, contexto em camadas e cache, com os subagentes e as sessões aninhadas. Tudo começa recolhido.",
+  "author": { "name": "Balison", "url": "https://github.com/ba-lison" },
+  "license": "SEE LICENSE IN LICENSE",
+  "types": "./types/index.d.ts"
+}
