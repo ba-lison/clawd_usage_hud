@@ -3,14 +3,14 @@
 Aprovadas por Bali em 2026-11-11, a partir de `prototipo.html` (abrir no navegador; seletores de superfície, situação e pose no topo).
 
 ## O que é
-Um mod só, no lugar do `usage-hud` e da `tripulacao`, que serão desinstalados quando este entrar. Código 100% próprio; as ideias externas (composição do contexto, relógio do cache) foram adaptadas.
+Uma faixa acima do prompt com o uso da sessão (janela de 5 horas, semana, contexto e cache), os subagentes e as sessões que esta sessão abriu.
 
 ## Cartão
-- Rei Clawd à esquerda, centralizado na altura do cartão, com o que está fazendo escrito embaixo. As 14 poses do usage-hud continuam todas; a coroa não pode ser cortada quando ele pula.
+- Rei Clawd à esquerda, centralizado na altura do cartão, com o que está fazendo escrito embaixo. São 14 poses; a coroa não pode ser cortada quando ele pula.
 - Três barras do mesmo comprimento, porcentagens na mesma coluna: **Janela 5h**, **Semana** (limite semanal, `seven_day`) e **Contexto**.
 - Contexto em camadas: conversa, ferramentas e arquivos. Sem "sistema". Legenda só quando há trabalho ou o contexto está alto.
 - Cache na mesma linha da legenda, à direita, pequeno e discreto: verde quente com contagem regressiva, amarelo nos últimos 5 min, azul frio ("a próxima mensagem relê tudo").
-- Sem barra do plano. Sem botão de handoff (removido de vez, com a sugestão em 50%, o Compactar e o Retomar).
+- Sem barra do plano e sem botão de handoff.
 
 ## Ocultar
 - Tudo começa oculto em toda sessão nova: o cartão numa linha (Rei pequeno, 5h, Semana, Contexto, cache e contagem) e as duas seções fechadas. Não guarda o estado entre sessões.
@@ -18,7 +18,6 @@ Um mod só, no lugar do `usage-hud` e da `tripulacao`, que serão desinstalados 
 
 ## Sessões em paralelo
 - Só as sessões aninhadas, isto é, as que esta sessão abriu (galho `└` como na barra lateral). Sessões soltas não aparecem mais, mesmo com o processo vivo.
-- Limpar os arquivos velhos de `~/.claude/tripulacao/sessoes/`.
 - Risco a verificar primeiro: como o mod descobre a sessão-mãe de uma sessão aninhada.
 
 ## Superfícies

@@ -23,31 +23,31 @@
 
 ## Sobre o projeto
 
-Quem trabalha o dia todo com o Claude Code descobre o limite de uso tarde demais: a janela de 5 horas acaba no meio de uma tarefa, o contexto enche sem aviso e o cache esfria enquanto você está fora. O Clawd-Usage-HUD coloca esses números à vista, acima da caixa de mensagem, sem abrir outra tela.
+Quem passa o dia no Claude Code costuma descobrir o limite de uso tarde: a janela de 5 horas acaba no meio de uma tarefa, o contexto enche sem aviso e o cache esfria enquanto você está longe do computador. O Clawd-Usage-HUD mostra esses números numa faixa logo acima da caixa de mensagem.
 
-Um personagem, o Rei Clawd, mostra o que a sessão está fazendo (lendo, editando, no terminal, orquestrando subagentes e outras 10 poses). Ao lado dele ficam três barras: janela de 5 horas, limite semanal e contexto. Abaixo, os subagentes em andamento e as sessões que esta sessão abriu, cada um com modelo, uso e o que está fazendo.
+À esquerda fica o Rei Clawd, um personagem que muda de pose conforme o que a sessão faz: lendo arquivos, editando, rodando comandos no terminal, orquestrando subagentes. São 14 poses ao todo. Ao lado dele há três barras, uma para a janela de 5 horas, uma para o limite semanal e uma para o contexto. Embaixo aparecem os subagentes em andamento e as sessões que esta sessão abriu, com o modelo, o uso e a ação atual de cada um.
 
-O mod substitui dois mods anteriores (`usage-hud` e `tripulacao`) por um cartão só. Tudo começa recolhido em cada sessão nova.
+Toda sessão nova começa com a faixa recolhida numa linha.
 
 ## Demonstração e recursos
 
 ![Faixa do Clawd-Usage-HUD aberta no app desktop, com o cartão de uso, dois subagentes e duas sessões abertas](assets/demo-hud.png)
 
-<sub>Captura do protótipo aprovado (<code>docs/prototipo/prototipo.html</code>), no cenário "Trabalhando com subagentes". Os valores são fictícios.</sub>
+<sub>Captura do protótipo da interface (<code>docs/prototipo/prototipo.html</code>), no cenário "Trabalhando com subagentes". Os valores são fictícios.</sub>
 
 ### O que você consegue fazer
 
-- **Ver o limite antes de bater nele:** janela de 5 horas e semana com porcentagem, horário em que renovam e tempo que falta.
-- **Entender o contexto:** a barra de contexto mostra três camadas (conversa, ferramentas e arquivos), com legenda quando há trabalho ou o contexto está alto.
-- **Saber se o cache está quente:** verde com contagem regressiva, amarelo nos últimos 5 minutos, azul quando a próxima mensagem vai reler tudo.
-- **Salvar antes de o cache esfriar:** com a sessão parada e faltando 5 minutos, o mod pede à própria sessão que atualize as pendências conforme as regras da pasta. Isso acontece uma vez por período parado.
-- **Acompanhar a equipe:** subagentes e sessões aninhadas com modelo, uso do contexto, tempo e ação atual, cada um com o botão **Parar**.
-- **Recolher o que não precisa:** cartão, subagentes e sessões abertas têm botões de ocultar independentes.
-- **Usar em qualquer superfície:** app desktop, VS Code (colunas empilhadas) e terminal (uma linha só, com largura fixa).
+- Ver quanto já gastou da janela de 5 horas e da semana, a que horas cada uma renova e quanto tempo falta.
+- Ver o contexto dividido em conversa, ferramentas e arquivos. A legenda aparece quando há trabalho em andamento ou o contexto está alto.
+- Saber o estado do cache pela cor: verde com contagem regressiva enquanto está quente, amarelo nos últimos 5 minutos e azul quando a próxima mensagem vai reler tudo.
+- Não perder o trabalho quando o cache está para esfriar. Se a sessão estiver parada e faltarem 5 minutos, o mod pede à própria sessão que atualize as pendências conforme as regras da pasta, uma vez a cada período parado.
+- Acompanhar subagentes e sessões abertas por esta, com modelo, uso do contexto, tempo e ação atual, e parar qualquer um deles pelo botão Parar.
+- Recolher separadamente o cartão, a lista de subagentes e a de sessões.
+- Usar no app desktop, no VS Code (com as colunas empilhadas) e no terminal, onde tudo cabe numa linha.
 
 ## Começar a usar
 
-O mod se instala como um marketplace local do Claude Code, a partir de uma cópia deste repositório.
+O mod é instalado como um marketplace local do Claude Code, a partir de uma cópia deste repositório.
 
 1. Clone o repositório numa pasta da sua máquina (o acesso é restrito).
 2. Em `~/.claude/settings.json`, registre a pasta como marketplace e ligue o plugin:
@@ -65,7 +65,7 @@ O mod se instala como um marketplace local do Claude Code, a partir de uma cópi
 }
 ```
 
-3. Abra uma sessão nova do Claude Code. A faixa aparece recolhida acima do prompt; use **Mostrar** para abrir o cartão.
+3. Abra uma sessão nova do Claude Code. A faixa aparece recolhida acima do prompt, e o botão Mostrar abre o cartão.
 
 ### Estrutura
 
@@ -75,7 +75,7 @@ O mod se instala como um marketplace local do Claude Code, a partir de uma cópi
 | `hooks/` | Registro do mod (`register.tsx`), desenho do Rei Clawd, cartão e leitura das sessões |
 | `types/` | Contrato do estado que o cartão desenha |
 | `tests/` | Testes do cartão, do cache e das sessões aninhadas |
-| `docs/prototipo/` | Protótipo da interface e decisões aprovadas |
+| `docs/prototipo/` | Protótipo da interface e decisões de desenho |
 
 ## Documentação e ajuda
 
@@ -87,7 +87,7 @@ O mod se instala como um marketplace local do Claude Code, a partir de uma cópi
 
 ### Créditos e materiais de terceiros
 
-Código próprio. A ideia de mostrar a composição do contexto e o relógio do cache veio de referências externas e foi adaptada. O Rei Clawd se inspira no mascote do Claude Code. Claude e Claude Code são marcas da Anthropic; este mod não é afiliado à Anthropic.
+Claude e Claude Code são marcas da Anthropic. Este mod não é afiliado à Anthropic.
 
 ## Autoria e licença
 

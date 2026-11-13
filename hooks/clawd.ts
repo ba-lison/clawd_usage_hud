@@ -64,7 +64,7 @@ const BODY = [
   'eddddddddddd', 'sdddddddddds', '  dddddddd  ', '  ssssssss  ', '  s s  s s  ', '  s s  s s  ',
 ]
 
-// The usage-hud king's crown, the body's first three rows: each session in parallel wears it,
+// The king's crown, the body's first three rows: each session in parallel wears it,
 // since its main loop is a king of its own.
 const CROWN = ['   y yy y   ', '   yyrryy   ', '   YYYYYY   ']
 let isCrowned = false
@@ -229,7 +229,7 @@ svg *{transform-box:fill-box}
 @keyframes drop{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(5px)}}
 @media (prefers-reduced-motion:reduce){*{animation-play-state:paused!important}}`
 
-// The size in the band's rows: the usage-hud draws the same viewBox at 48 x 46.
+// The size in the band's rows: the card draws the same viewBox at 48 x 46.
 export const CLAWD_SIZE = { width: 34, height: 33 } as const
 
 // The whole drawing for one pose, with its title as the tooltip; crowned for a session in parallel.

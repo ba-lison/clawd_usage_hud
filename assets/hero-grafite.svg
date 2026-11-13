@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Clawd-Usage-HUD — o uso da sessão do Claude Code numa faixa acima do prompt">
-  <title>Clawd-Usage-HUD — uso da sessão acima do prompt</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Clawd-Usage-HUD: o uso da sessão do Claude Code numa faixa acima do prompt">
+  <title>Clawd-Usage-HUD: uso da sessão acima do prompt</title>
   <rect width="1200" height="420" fill="#202725"/>
   <rect x="0.75" y="0.75" width="1198.5" height="418.5" fill="none" stroke="#F3F0E8" stroke-opacity="0.24" stroke-width="1.5"/>
   <g fill="none" stroke="#F3F0E8" stroke-width="1" stroke-opacity="0.28"><path d="M0 52H1200M0 348H1200M64 0V420M736 52V348M1136 0V420"/></g>
