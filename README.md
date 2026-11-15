@@ -5,11 +5,11 @@
 
 <h1 align="center">Clawd-Usage-HUD</h1>
 
-<p align="center">Mod do Claude Code que mostra, numa faixa acima do prompt, quanto da janela de 5 horas, da semana e do contexto a sessão já usou, junto com os subagentes e as sessões que ela abriu.</p>
+<p align="center">Saiba quanto ainda resta da janela de 5 horas, da semana e do contexto do Claude Code sem sair da conversa, e veja o que a sessão está fazendo enquanto você espera.</p>
 
 <p align="center">
   <img alt="versão: 0.1.1" src="https://img.shields.io/badge/vers%C3%A3o-0.1.1-4C6972?style=flat-square&amp;labelColor=202725">
-  <img alt="ambiente: Claude Code" src="https://img.shields.io/badge/ambiente-Claude%20Code-5C6554?style=flat-square&amp;labelColor=202725">
+  <img alt="funciona em: desktop, VS Code e terminal" src="https://img.shields.io/badge/funciona%20em-desktop%20%C2%B7%20VS%20Code%20%C2%B7%20terminal-5C6554?style=flat-square&amp;labelColor=202725">
   <a href="LICENSE"><img alt="licença: proprietária" src="https://img.shields.io/badge/licen%C3%A7a-propriet%C3%A1ria-5C6554?style=flat-square&amp;labelColor=202725"></a>
 </p>
 
@@ -23,31 +23,73 @@
 
 ## Sobre o projeto
 
-Quem passa o dia no Claude Code costuma descobrir o limite de uso tarde: a janela de 5 horas acaba no meio de uma tarefa, o contexto enche sem aviso e o cache esfria enquanto você está longe do computador. O Clawd-Usage-HUD mostra esses números numa faixa logo acima da caixa de mensagem.
+Quem usa o Claude Code o dia inteiro costuma descobrir o limite tarde demais. A janela de 5 horas acaba no meio de uma tarefa, o contexto enche sem aviso e o cache esfria enquanto você foi buscar um café. O Clawd-Usage-HUD é um mod que coloca esses números numa faixa logo acima da caixa de mensagem, no app desktop, no VS Code e no terminal.
 
-À esquerda fica o Rei Clawd, um personagem que muda de pose conforme o que a sessão faz: lendo arquivos, editando, rodando comandos no terminal, orquestrando subagentes. São 14 poses ao todo. Ao lado dele há três barras, uma para a janela de 5 horas, uma para o limite semanal e uma para o contexto. Embaixo aparecem os subagentes em andamento e as sessões que esta sessão abriu, com o modelo, o uso e a ação atual de cada um.
+Ao lado das barras fica o Rei Clawd, um personagem em pixel art que muda de pose conforme o que a sessão está fazendo. Bate o olho e você já sabe se o Claude está lendo arquivos, rodando um comando, distribuindo trabalho para subagentes ou parado esperando a sua resposta.
 
-Toda sessão nova começa com a faixa recolhida numa linha.
+A faixa começa recolhida numa linha em toda sessão nova, então só ocupa espaço quando você pede.
 
 ## Demonstração e recursos
 
-![Faixa do Clawd-Usage-HUD aberta no app desktop, com o cartão de uso, dois subagentes e duas sessões abertas](assets/demo-hud.png)
+### App desktop
 
-<sub>Captura do protótipo da interface (<code>docs/prototipo/prototipo.html</code>), no cenário "Trabalhando com subagentes". Os valores são fictícios.</sub>
+![Faixa aberta no app desktop do Claude, com o Rei Clawd, as barras de uso, dois subagentes e duas sessões abertas](assets/demo-hud.png)
+
+<sub>Cenário "Trabalhando com subagentes" do protótipo da interface. Os valores são fictícios.</sub>
+
+### VS Code
+
+Na extensão do VS Code a faixa usa o mesmo desenho do app desktop, com as colunas empilhadas para caber no painel lateral.
+
+<img src="assets/demo-vscode.png" alt="Faixa aberta na extensão do Claude Code no VS Code, com o Rei Clawd orquestrando subagentes, as barras de 5h, semana e contexto, a legenda do contexto e o cache" width="440">
+
+### Terminal
+
+No terminal não há desenho: as três barras, o cache e a contagem cabem numa linha só, com Subagentes e Sessões logo abaixo, cada um com seu botão de mostrar.
+
+![Faixa no Claude Code pelo terminal, com as barras de 5h, semana e contexto numa linha e o cache no fim](assets/demo-terminal.png)
+
+<sub>Capturas do protótipo da interface (<code>docs/prototipo/prototipo.html</code>), com valores fictícios.</sub>
+
+### Os 14 estados do Rei Clawd
+
+O Rei muda de pose a cada coisa que a sessão faz. Cada subagente ganha o seu próprio Clawd, sem coroa, com a mesma lógica.
+
+![Os 14 estados do Rei Clawd: parado, pensando, lendo arquivos, editando, no terminal, na web, orquestrando subagentes, trabalhando, esperando você, aguardando segundo plano, compactando, concluído, interrompido e erro](assets/estados-clawd.png)
+
+| Estado | Quando aparece |
+| --- | --- |
+| Parado | A sessão não está fazendo nada. |
+| Pensando | O Claude está montando a próxima resposta. |
+| Lendo arquivos | Abriu ou buscou arquivos (Read, Grep, Glob). |
+| Editando | Está escrevendo ou alterando arquivos. |
+| No terminal | Rodou um comando no Bash ou no PowerShell. |
+| Na web | Pesquisou ou abriu uma página. |
+| Orquestrando subagentes | Mandou trabalho para subagentes ou workflows. |
+| Trabalhando | Usou qualquer outra ferramenta. |
+| Esperando você | Fez uma pergunta ou pediu a aprovação de um plano. |
+| Aguardando segundo plano | A resposta terminou, mas ainda há subagentes rodando. |
+| Compactando | O contexto está sendo resumido. |
+| Concluído | A resposta acabou de ser entregue. |
+| Interrompido | Você parou a resposta no meio. |
+| Erro | A resposta falhou. |
+
+Concluído, interrompido e erro ficam na tela por um instante e depois voltam para parado (ou aguardando, se ainda houver trabalho em segundo plano).
 
 ### O que você consegue fazer
 
-- Ver quanto já gastou da janela de 5 horas e da semana, a que horas cada uma renova e quanto tempo falta.
-- Ver o contexto dividido em conversa, ferramentas e arquivos. A legenda aparece quando há trabalho em andamento ou o contexto está alto.
-- Saber o estado do cache pela cor: verde com contagem regressiva enquanto está quente, amarelo nos últimos 5 minutos e azul quando a próxima mensagem vai reler tudo.
-- Não perder o trabalho quando o cache está para esfriar. Se a sessão estiver parada e faltarem 5 minutos, o mod pede à própria sessão que atualize as pendências conforme as regras da pasta, uma vez a cada período parado.
-- Acompanhar subagentes e sessões abertas por esta, com modelo, uso do contexto, tempo e ação atual, e parar qualquer um deles pelo botão Parar.
-- Recolher separadamente o cartão, a lista de subagentes e a de sessões.
-- Usar no app desktop, no VS Code (com as colunas empilhadas) e no terminal, onde tudo cabe numa linha.
+- Ver quanto já gastou da janela de 5 horas e da semana, a que horas cada uma renova e quanto falta para isso.
+- Entender o que está ocupando o contexto, separado em conversa, ferramentas e arquivos. A legenda aparece quando há trabalho em andamento ou o contexto está alto.
+- Saber pela cor se o cache ainda vale: verde com contagem regressiva enquanto está quente, amarelo nos últimos 5 minutos e azul quando a próxima mensagem vai reler tudo do zero.
+- Não perder o trabalho quando o cache está para esfriar. Se a sessão estiver parada e faltarem 5 minutos, o mod pede à própria sessão que registre as pendências conforme as regras da pasta, uma vez a cada período parado.
+- Acompanhar os subagentes e as sessões que esta sessão abriu, com modelo, uso do contexto, tempo e ação atual de cada um, e parar qualquer um pelo botão Parar.
+- Recolher o cartão, a lista de subagentes e a de sessões, cada um no seu botão.
+
+As barras e os subagentes funcionam nas três superfícies. A lista de sessões abertas por esta depende do app desktop, que é onde uma sessão consegue abrir outra.
 
 ## Começar a usar
 
-O mod é instalado como um marketplace local do Claude Code, a partir de uma cópia deste repositório.
+O mod é instalado como um marketplace local do Claude Code, a partir de uma cópia deste repositório. A mesma instalação vale para o app desktop, o VS Code e o terminal.
 
 1. Clone o repositório numa pasta da sua máquina (o acesso é restrito).
 2. Em `~/.claude/settings.json`, registre a pasta como marketplace e ligue o plugin:
@@ -82,7 +124,7 @@ O mod é instalado como um marketplace local do Claude Code, a partir de uma có
 | Assunto | Onde consultar |
 | --- | --- |
 | Decisões de interface e comportamento | [docs/prototipo/DECISOES.md](docs/prototipo/DECISOES.md) |
-| Protótipo navegável (abrir no navegador) | [docs/prototipo/prototipo.html](docs/prototipo/prototipo.html) |
+| Protótipo navegável, com seletor de superfície, situação e pose | [docs/prototipo/prototipo.html](docs/prototipo/prototipo.html) |
 | Formato do estado do mod | [types/index.d.ts](types/index.d.ts) |
 
 ### Créditos e materiais de terceiros
